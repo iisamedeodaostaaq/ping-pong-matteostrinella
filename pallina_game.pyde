@@ -31,27 +31,29 @@ def draw():
     
     if (ypos+25>height-25) and (xpos+25)>x_racchetta and (xpos-25)<(x_racchetta+100) : #se la pallina rimbalza sulla prima racchetta
         y_dir = -1 #respingo la pallina facendogli cambiare direzione
-        punt+=1 #aumento il punteggio
+    
         
     
     if (ypos-25<25) and (xpos+25)>x_racchetta1 and (xpos-25)<(x_racchetta1+100) : #se la pallina rimbalza sulla seconda racchetta
         y_dir = +1 #respingo la pallina facendogli cambiare direzione
-        punt1+=1 #aumento il punteggio
+    
         
         
         
-    if (xpos+25 > width or xpos-25 < 0): #se la pallina tocca su o giù
+    if (xpos+25 > width or xpos-25 < 0): #se la pallina tocca destra o sinistra
         x_dir = x_dir * (-1) #reapingo la pallina facendogli cambiare direzione
         fill(random (0, 255),random (0, 255),random (0, 255)) #cambio il colore della pallina in maniera casulale
-        if punt >= 10: #se il punteggio è superiore o uguale a 10
-            punt-=1 #diminuisco il punteggio
         
-        
-    if (ypos+25 > height or ypos-25 < 0): #se la pallina tocca destra o sinistra
+    if (ypos-25 < 0): #se la pallina tocca sopra
         y_dir = y_dir * (-1) #reapingo la pallina facendogli cambiare direzione
         fill(random (0, 255),random (0, 255),random (0, 255)) #cambio il colore della pallina in maniera casulale
-        if punt1 >= 10: #se il punteggio è superiore o uguale a 10
-            punt1-=1 #diminuisco il punteggio
+        punt+=1 #aumento il punteggio
+        
+    if (ypos+25 > height): #se la pallina tocca giù
+        y_dir = y_dir * (-1) #reapingo la pallina facendogli cambiare direzione
+        fill(random (0, 255),random (0, 255),random (0, 255)) #cambio il colore della pallina in maniera casulale
+        punt1+=1 #aumento il punteggio
+    
         
     #cambio le coordinate della pallina per fare in modo che essa si muova
     xpos = xpos+5*x_dir 
@@ -64,8 +66,21 @@ def draw():
     textSize(20) #stabilisco la grandezza del punteggio della seconda racchetta
     text(punt1, 0,20) #assegno valore e posizione al punteggio
     
-
-    
+    if punt>= 10: #se il punteggio del primo giocatore è maggiore o uguale a 10
+        textSize(30)
+        text("Gocatore 1 ha vinto",100,250) #giocatore 1 ha vinto
+        #riporto la pallina al centro
+        xpos=width/2
+        ypos=height/2
+        
+    if punt1>= 10: #se il punteggio del secondo giocatore è maggiore o uguale a 10
+        textSize(30)
+        text("Gocatore 2 ha vinto",100,250) #giocatore 2 ha vinto
+        #riporto la pallina al centro
+        xpos=width/2 
+        ypos=height/2
+        
+        
 def keyPressed():
     global x_racchetta,x_racchetta1 #definisco le variabili globali
     if  keyCode == LEFT: #se premo la freccia sinistra 
@@ -78,7 +93,7 @@ def keyPressed():
         if x_racchetta >= (width - 100): #se la racchetta ha toccato il bordo destro
             x_racchetta-=10 #la sposto di 10 verso sinistra
         else: #altrimenti
-            x_racchetta += 10 #la spost di 10 verso destra
+            x_racchetta += 10 #la sposto di 10 verso destra
             
         
     if key== "z": #se premo il tasto z
@@ -91,5 +106,5 @@ def keyPressed():
         if x_racchetta1 >= (width - 100): #se la racchetta ha toccato il bordo destro
             x_racchetta1-=10 #la sposto di 10 verso sinistra
         else: #altrimenti
-            x_racchetta1 += 10 #la spost di 10 verso destra
+            x_racchetta1 += 10 #la sposto di 10 verso destra
             
