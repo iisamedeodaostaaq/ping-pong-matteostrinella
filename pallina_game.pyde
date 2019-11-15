@@ -1,4 +1,5 @@
 # dichiaro le variabili inziali 
+## Prof. più che dire che dichiari le variabili (il che è evidente) specifica cosa sono e fanno tali variabili
 xpos = 60 
 ypos = 60
 b_height = 400;
@@ -22,13 +23,13 @@ def draw():
     ellipse(xpos,ypos,50,50) #disegno un cerchio
     
     
-    
+## Prof. Le ordinate sarebbe meglio esprimerle in funzone delel dimensioni della finestra    
     rect(x_racchetta,375,100,25) #disegno un rettangolo (prima racchetta)
     rect(x_racchetta1,0,100,25) #disegno un rettangolo (seconda racchetta)
     
    
 
-    
+## Prof. Fai il calcolo utilizzando il raggio del cerchio come variabile in maniera da poterlo cambiare e gestire facilmente    
     if (ypos+25>height-25) and (xpos+25)>x_racchetta and (xpos-25)<(x_racchetta+100) : #se la pallina rimbalza sulla prima racchetta
         y_dir = -1 #respingo la pallina facendogli cambiare direzione
     
@@ -54,7 +55,7 @@ def draw():
         fill(random (0, 255),random (0, 255),random (0, 255)) #cambio il colore della pallina in maniera casulale
         punt1+=1 #aumento il punteggio
     
-        
+## Prof. Anche la velocità redenrei un parametro. Fra le altre cose con 5 non si riesce a giocare: troppo veloce in relazione alla grandezza del campo        
     #cambio le coordinate della pallina per fare in modo che essa si muova
     xpos = xpos+5*x_dir 
     ypos = ypos+5*y_dir
@@ -66,8 +67,10 @@ def draw():
     textSize(20) #stabilisco la grandezza del punteggio della seconda racchetta
     text(punt1, 0,20) #assegno valore e posizione al punteggio
     
+## Prof. Cosa accade al game over? come ne esco?
     if punt>= 10: #se il punteggio del primo giocatore è maggiore o uguale a 10
         textSize(30)
+## Prof. Attenzione a scrivere bene le scritte!!!!
         text("Gocatore 1 ha vinto",100,250) #giocatore 1 ha vinto
         #riporto la pallina al centro
         xpos=width/2
@@ -83,6 +86,7 @@ def draw():
         
 def keyPressed():
     global x_racchetta,x_racchetta1 #definisco le variabili globali
+## Prof. Perché fai rimbalzare la racchetta: conviene no muoverla quanto tocca i bordi
     if  keyCode == LEFT: #se premo la freccia sinistra 
         if x_racchetta <= 0: #se la racchetta ha toccato il bordo sinistro
             x_racchetta+=10 #la spost di 10 verso destra
